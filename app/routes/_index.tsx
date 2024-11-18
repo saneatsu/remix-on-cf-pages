@@ -51,6 +51,14 @@ export default function Index() {
                 JSON Placeholder から 1000件取得
               </Link>
             </li>
+            <li>
+              <Link
+                to='/db-connect'
+                className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
+              >
+                DB（Turso）からデータを取得
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

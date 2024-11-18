@@ -4,6 +4,10 @@ node_modules
 /build
 /bundled
 .env
-.dev.vars
+# .dev.vars
+/bundled
+/prisma/dev.db-journal
+/prisma/dev.db-shm
+/prisma/dev.db-wal
 
 .wrangler
