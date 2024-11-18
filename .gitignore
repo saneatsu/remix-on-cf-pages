@@ -2,6 +2,7 @@ node_modules
 
 /.wrangler
 /build
+/bundled
 .env
 .dev.vars
 
