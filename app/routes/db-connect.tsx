@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 
-import type { Company, PrismaClient, User } from "@prisma/client";
-import type { LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { Await, useLoaderData } from "@remix-run/react";
+import { db } from "db";
+import { companyTable,  userTable } from "db/schema";
+import type { InsertCompany, InsertUser } from 'db/schema';
 
-async function getUsers(client: PrismaClient): Promise<User[]> {
+async function getUsers(): Promise<InsertUser[]> {
   try {
-    const users = await client.user.findMany();
+    const users = await db.select().from(userTable)
     return users
   } catch (error) {
     console.error(error)
@@ -14,9 +15,9 @@ async function getUsers(client: PrismaClient): Promise<User[]> {
   }
 }
 
-async function getCompanies(client: PrismaClient): Promise<Company[]> {
+async function getCompanies(): Promise<InsertCompany[]> {
   try {
-    const companies = await client.company.findMany();
+    const companies = await db.select().from(companyTable)
     return companies
   } catch (error) {
     console.error(error)
@@ -24,10 +25,10 @@ async function getCompanies(client: PrismaClient): Promise<Company[]> {
   }
 }
 
-export async function loader({ context }: LoaderFunctionArgs) {
-  const users = getUsers(context.db)
-  const companies = getCompanies(context.db)
-  return { users, companies };
+export async function loader() {
+  const users = getUsers()
+  const companies = getCompanies()
+  return { users, companies }
 }
 
 export default function DbConnectPage() {

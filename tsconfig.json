@@ -21,6 +21,7 @@
     "jsx": "react-jsx",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
+    "module": "esnext", // import.meta で発生するエラーを回避する
     "target": "ES2022",
     "strict": true,
     "allowJs": true,
